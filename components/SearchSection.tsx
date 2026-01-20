@@ -1,27 +1,25 @@
 "use client";
 
 import { Search } from "lucide-react";
-import * as React from "react";
+import { useState } from "react";
 
-interface SearchSectionProps {
-    city: string;
-    setCity: (city: string) => void;
-    unit: "C" | "F";
-    setUnit: (unit: "C" | "F") => void;
-    onCityChange: (city: string) => void;
-    handleSearch: () => void;
-    handleUnitChange: (unit: "C" | "F") => void;
-}
+export default function SearchSection() {
+    const [city, setCity] = useState("");
+    const [unit, setUnit] = useState<"C" | "F">("F");
 
-export default function SearchSection({
-    city,
-    setCity,
-    unit,
-    setUnit,
-    onCityChange,
-    handleSearch,
-    handleUnitChange,
-}: SearchSectionProps) {
+    const onCityChange = (city: string) => {
+        setCity(city);
+    };
+
+    const handleSearch = () => {
+        /* handle search logic */
+        console.log(city);
+    };
+
+    const handleUnitChange = (unit: "C" | "F") => {
+        setUnit(unit);
+    };
+
     return (
         <div className="w-full mx-auto dark:bg-gray-800 bg-white rounded-xl shadow-md p-4 sm:p-6 transition-all duration-300">
             <div className="flex flex-col sm:flex-row gap-3 ">
@@ -31,8 +29,11 @@ export default function SearchSection({
                             className="w-full h-11 pl-4 pr-4 dark:bg-gray-700 bg-gray-200 dark:text-white focus:outline-none dark:border-gray-600 border-gray-200 shadow-2xl rounded-lg"
                             type="text"
                             placeholder="Search for a city..."
-                            onChange={(e) => onCityChange(e.target.value)}
+                            onChange={(e) => setCity(e.target.value)}
                             value={city}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") handleSearch();
+                            }}
                         />
                     </div>
                     <button
