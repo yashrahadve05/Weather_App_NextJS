@@ -8,42 +8,51 @@ This is a weather application built with Next.js and TypeScript that allows user
 ```
 The project is organized as follows:
 
-weather-app/
+weather-forecast-app/
 │
-├── app/
-│   ├── layout.tsx              // Navbar + SearchSection + ThemeProvider
-│   ├── page.tsx                // Default view → CityTable
+├── app/                          # Next.js App Router
+│   ├── layout.tsx                # Navbar + Search + Providers (persistent)
+│   ├── page.tsx                  # Default → CityTable
+│   ├── globals.css
 │   │
 │   ├── city/
 │   │   └── [name]/
-│   │       ├── page.tsx        // City detail page
-│   │       └── loading.tsx     // Skeleton while fetching
-│   │
-│   └── globals.css
+│   │       ├── page.tsx          # CityWeather page
+│   │       └── loading.tsx       # Skeleton loader
 │
-├── components/
+│
+├── components/                   # Reusable UI components
 │   ├── Navbar.tsx
 │   ├── SearchSection.tsx
-│   ├── CityTable.tsx           // 25 cities + pagination
-│   ├── CityWeather.tsx         // Full weather detail
-│   ├── Forecast.tsx            // 5-day forecast cards
-│   ├── Skeleton.tsx            // Loading UI
-│   └── ThemeProvider.tsx       // next-themes wrapper
+│   ├── CityTable.tsx
+│   ├── CityWeather.tsx
+│   └── ThemeProvider.tsx
 │
-├── lib/
-│   ├── weather.ts              // All API calls (OpenWeatherMap)
-│   └── geolocation.ts          // Auto-location helper (optional)
 │
-├── types/
-│   └── weather.ts              // TypeScript interfaces
+├── context/                      # Global state
+│   └── WeatherContext.tsx
 │
-├── public/
-│   └── icons/                  // Weather icons (optional)
+├── hooks/                        # Custom hooks
+│   └── useWeather.ts             # fetch + state logic
 │
-├── .env.local                  // API key
+│
+├── lib/                          # Business logic (NO UI)
+│   └── weather.ts                # API calls
+│
+├── types/                        # TypeScript types only
+│   └── weather.ts
+│
+├── public/                       # Static assets
+│   ├── icons/
+│   └── images/
+│
+│
+├── .env.local                    # API key
 ├── next.config.ts
 ├── tailwind.config.ts
 ├── postcss.config.js
+├── tsconfig.json
 ├── package.json
-└── tsconfig.json
+└── README.md
+
 ```
