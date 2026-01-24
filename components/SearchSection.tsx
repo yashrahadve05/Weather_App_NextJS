@@ -1,23 +1,22 @@
 "use client";
 
+
+import { useWeatherContext } from "@/context/WeatherContext";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 export default function SearchSection() {
-    const [city, setCity] = useState("");
-    const [unit, setUnit] = useState<"C" | "F">("F");
-
-    const onCityChange = (city: string) => {
-        setCity(city);
-    };
-
+    const router = useRouter();
+    const { city, setCity, unit, setUnit } = useWeatherContext();
+    
     const handleSearch = () => {
         /* handle search logic */
-        console.log(city);
+        router.push(`/city/${city}`);
     };
 
     const handleUnitChange = (unit: "C" | "F") => {
-        setUnit(unit);
+        setUnit(unit);  
     };
 
     return (
