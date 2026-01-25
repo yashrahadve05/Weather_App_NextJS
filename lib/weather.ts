@@ -1,8 +1,7 @@
 const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 const baseUrl = 'https://api.openweathermap.org/data/2.5/';
 
-// https://api.openweathermap.org/data/2.5/forecast?q=Bhopal&units=metric&appid=9073e75dab151a9ecad1dfd3d00ca01f
-
+// https://api.openweathermap.org/data/2.5/forecast?q=Bhopal&units=metric&appid=${apiKey}
 export type Unit = "C" | "F";
 
 const topCities = [
