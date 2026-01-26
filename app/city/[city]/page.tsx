@@ -16,13 +16,13 @@ export default function CityPage({
     const resolvedParams = use(params);
 
     // Decode the city name
-    const decodedCity = useMemo(() => {
+    const city = useMemo(() => {
         return decodeURIComponent(resolvedParams?.city || "");
     }, [resolvedParams?.city]);
 
     useEffect(() => {
-        setCity(decodedCity);
-    }, [decodedCity, setCity]);
+        setCity(city);
+    }, [city, setCity]);
 
-    return <CityWeather city={decodedCity} />;
+    return <CityWeather city={city} />;
 }

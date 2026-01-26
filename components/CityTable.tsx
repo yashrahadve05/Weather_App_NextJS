@@ -1,6 +1,10 @@
-import React from "react";
+import { useWeatherContext } from "@/context/WeatherContext";
+import React, { use } from "react";
 
 export default function CityTable() {
+
+    const {unit} = useWeatherContext();
+
     return (
         <>
             <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-gray-300 dark:border-slate-700 mt-4 rounded-xl">
@@ -30,12 +34,12 @@ export default function CityTable() {
                                 scope="row"
                                 className="px-6 py-4 font-medium text-heading whitespace-nowrap"
                             >
-                                Apple MacBook Pro 17"
+                                Bhopal
                             </th>
-                            <td className="px-6 py-4">Silver</td>
-                            <td className="px-6 py-4">Laptop</td>
-                            <td className="px-6 py-4">$2999</td>
-                            <td className="px-6 py-4">231</td>
+                            <td className="px-6 py-4">29 <span>°{unit}</span></td>
+                            <td className="px-6 py-4">Coud</td>
+                            <td className="px-6 py-4">60<span>%</span></td>
+                            <td className="px-6 py-4">20 <span>km/h</span></td>
                         </tr>
                     </tbody>
                 </table>
