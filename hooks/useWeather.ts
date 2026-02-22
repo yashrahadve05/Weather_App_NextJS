@@ -1,12 +1,9 @@
 'use client';
 
 import { useWeatherContext } from '@/context/WeatherContext';
-import { fetchCurrentWeather, fetchWeatherForcast } from '@/lib/weather';
+import { fetchCityWeather, fetchCurrentWeather, fetchWeatherForcast } from '@/lib/weather';
 
 import { useEffect, useState } from 'react';
-
-
-
 
 export function useWeather() {
 
@@ -34,29 +31,29 @@ export function useWeather() {
 
     }
 
-    // const fetchCityWeatherData = async () => {
-    //     try {
-    //         setLoading(true);
+    const fetchCityWeatherData = async () => {
+        try {
+            setLoading(true);
             
-    //         const cityWeatherData = await fetchCityWeather();
-    //         setCityWeatherData(cityWeatherData);
+            const cityWeatherData = await fetchCityWeather(unit);
+            setCityWeatherData(cityWeatherData);
 
 
-    //     } catch (error) {
-    //         console.error('Error fetching city weather data:', error);
-    //         throw error;
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
+        } catch (error) {
+            console.error('Error fetching city weather data:', error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
         fetchWeatherData();
     }, [city, unit, setLoading]);
 
-    // useEffect(() => {
-    //     fetchCityWeatherData();
-    // }, [unit, setLoading]);
+    useEffect(() => {
+        fetchCityWeatherData();
+    }, [unit, setLoading]);
 
     return {
         dateTime: weatherData?.dt || 0,

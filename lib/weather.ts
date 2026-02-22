@@ -58,7 +58,7 @@ export async function fetchCurrentWeather(city: string, unit: Unit) {
 
 
     return {
-        city: data.city
+        cityWeatherData: data.city
     };
 }
 
@@ -79,26 +79,29 @@ export async function fetchWeatherForcast(city: string, unit: Unit) {
     });
 
     let weatherForecastData = await response.json();
+    console.log(weatherForecastData)
 
     console.log('Fetch Weather Forcast Data Response:', weatherForecastData);
 
     return weatherForecastData;
 }
 
-// export async function fetchCityWeather() {
-//     const units = unitToAPI(unit);
+export async function fetchCityWeather(unit: Unit) {
+    let units = unitToAPI(unit);
 
-//     const idsString = topCities.join(',');
+    const idsString = topCities.join(',');
 
-//     const url = `${baseUrl}weather?id=${idsString}&units=${units}&appid=${apiKey}`;
-//     const response = await fetch(url, {
-//         headers: {
-//             'Authorization': `Bearer ${apiKey}`
-//         }
-//     });
+    const url = `${baseUrl}weather?id=${idsString}&units=${units}&appid=${apiKey}`;
+    const response = await fetch(url, {
+        headers: {
+            'Authorization': `Bearer ${apiKey}`
+        }
+    });
 
-//     let cityWeatherData = await response.json();
+    let cityWeatherData = await response.json();
+
+    console.log('Fetch City Weather Data Response:', cityWeatherData);
 
 
-//     return cityWeatherData;
-// }
+    return cityWeatherData;
+}
